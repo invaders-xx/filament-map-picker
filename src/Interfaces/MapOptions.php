@@ -8,6 +8,8 @@ interface MapOptions
 
     public function draggable(bool $draggable = true): self;
 
+    public function draggableMarker(bool $draggable = true): self;
+
     public function zoom(int $zoom): self;
 
     public function maxZoom(int $maxZoom): self;

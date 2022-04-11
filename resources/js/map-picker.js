@@ -40,10 +40,18 @@ window.mapPicker = ($wire, config) => {
                 });
                 this.marker = L.marker([0, 0], {
                     icon: svgIcon,
-                    draggable: false,
+                    draggable: true,
                     autoPan: true
                 }).addTo(this.map)
-                this.map.on('move', () => this.marker.setLatLng(this.map.getCenter()))
+                if (!config.draggableMarker) {
+                    this.marker.dragging.disable();
+                }
+                this.map.on('move', () => this.marker.setLatLng(this.map.getCenter()));
+                this.marker.on('moveend', () => {
+                    let coordinates = this.getCoordinates();
+                    console.log(coordinates);
+                    $wire.set(config.statePath, coordinates, false)
+                })
             }
 
             this.map.on('moveend', () => {

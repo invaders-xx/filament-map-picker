@@ -18,16 +18,17 @@ class OSMMap extends Field implements MapOptions
      * @var array
      */
     private array $mapConfig = [
-        'statePath'    => '',
-        'draggable'    => false,
-        'showMarker'   => false,
-        'tilesUrl'     => 'http://tile.openstreetmap.org/{z}/{x}/{y}.png',
-        'attribution'  => null,
-        'zoomOffset'   => -1,
-        'tileSize'     => 512,
-        'detectRetina' => false,
-        'minZoom'      => 0,
-        'maxZoom'      => 18,
+        'statePath'       => '',
+        'draggable'       => false,
+        'draggableMarker' => false,
+        'showMarker'      => false,
+        'tilesUrl'        => 'http://tile.openstreetmap.org/{z}/{x}/{y}.png',
+        'attribution'     => null,
+        'zoomOffset'      => -1,
+        'tileSize'        => 512,
+        'detectRetina'    => false,
+        'minZoom'         => 0,
+        'maxZoom'         => 18,
     ];
 
     /**
@@ -73,6 +74,18 @@ class OSMMap extends Field implements MapOptions
     public function draggable(bool $draggable = true): self
     {
         $this->mapConfig['draggable'] = $draggable;
+        return $this;
+    }
+
+    /**
+     * Determine if user can drag map around or not.
+     * @param bool $draggable
+     * @return MapOptions
+     * @note Default value is false
+     */
+    public function draggableMarker(bool $draggable = true): self
+    {
+        $this->mapConfig['draggableMarker'] = $draggable;
         return $this;
     }
 
